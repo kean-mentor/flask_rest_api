@@ -48,3 +48,7 @@ Finding keys by value
 
 Delete by key  
 `curl -i http://localhost:5000/values/abc123 -X DELETE`
+
+GUI:
+----
+There is a very simple GUI app to test the server if you don't want to mess with `curl` commands, to start it just type: `python gui.py` (Don't forget to activate your virtualenv if you use one and to start the server beforehand.)
