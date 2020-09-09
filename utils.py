@@ -23,5 +23,5 @@ class Storage(collections.UserDict):
     def get_all(self):
         return self.data
 
-
+# In a real-word app, this should be SQLAlchemy connected to some RDBMS
 storage = Storage()

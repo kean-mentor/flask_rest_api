@@ -15,6 +15,8 @@ def create_app(testing=False):
     storage.init_data(store_path)
 
     from api import simple_api
+    # In a real-world application add url_prefix
+    # something like this: 'url_prefix='/api/v1/resources'
     app.register_blueprint(simple_api)
 
     return app
