@@ -37,7 +37,7 @@ Sample requests:
 Get all  
 `curl -i http://localhost:5000/values -X GET`
 
-Get by key
+Get by key  
 `curl -i http://localhost:5000/values/abc123 -X GET`
 
 Add a new key-value pair  
