@@ -1,5 +1,5 @@
 # flask_rest_api
-A key-value server which is accessible from the network by a client
+A simple key-value server using Flask
 
 Install/Deploy:
 ---------------
@@ -36,6 +36,9 @@ Sample requests:
 ----------------
 Get all  
 `curl -i http://localhost:5000/values -X GET`
+
+Get by key
+`curl -i http://localhost:5000/values/abc123 -X GET`
 
 Add a new key-value pair  
 `curl -i -H "Content-Type: application/json" http://localhost:5000/values -X POST -d '{"key": "abc123", "value": "Honda Accord"}'`
