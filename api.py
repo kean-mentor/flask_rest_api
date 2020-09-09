@@ -24,20 +24,25 @@ def get_by_key(key):
     if key in storage:
         return jsonify(storage[key]), 200
 
-    return {'message': 'Key not found!'}, 404
+    return jsonify({'message': 'Key not found!'}), 404
 
 @simple_api.route('/values', methods=['POST'])
 def add():
-    if request.json and 'key' in request.json and 'value' in request.json:
+    if request.json:
+        if 'key' not in request.json:
+            return jsonify({'message': "ERR: 'key' is a required parameter"}), 400
+        if 'value' not in request.json:
+            return jsonify({'message': "ERR: 'value' is a required parameter"}), 400
+
         key = request.json['key']
         value = request.json['value']
-        
-        if key in storage:
-            message, status_code = "Item successfully updated", 200
-        else:
-            message, status_code = "Item successfully created", 201
-        storage[key] = value
-    else:
-        message, status_code = "Missing parameter", 400
 
-    return jsonify({'message': message}), status_code
+        if key in storage:
+            message, status_code = 'Item successfully updated', 200
+        else:
+            message, status_code = 'Item successfully created', 201
+        storage[key] = value
+        return jsonify({'message': message}), status_code
+
+    else:
+        return jsonify({'message': 'ERR: Missing data'}), 400

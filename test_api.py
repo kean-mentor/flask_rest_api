@@ -71,18 +71,18 @@ class TestApi(unittest.TestCase):
         data = {'value': 'Ferrari F40'}
         response = self.client.post('/values', json=data)
         self.assertEqual(response.status_code, 400)
-        self.assertEqual(response.json, {'message': 'Missing parameter'})
+        self.assertEqual(response.json, {'message': "ERR: 'key' is a required parameter"})
 
     def test_post_missing_value(self):
         data = {'key': 'trk311'}
         response = self.client.post('/values', json=data)
         self.assertEqual(response.status_code, 400)
-        self.assertEqual(response.json, {'message': 'Missing parameter'})
+        self.assertEqual(response.json, {'message': "ERR: 'value' is a required parameter"})
 
     def test_post_invalid(self):
         response = self.client.post('/values')
         self.assertEqual(response.status_code, 400)
-        self.assertEqual(response.json, {'message': 'Missing parameter'})
+        self.assertEqual(response.json, {'message': 'ERR: Missing data'})
 
 
 if __name__ == "__main__":
