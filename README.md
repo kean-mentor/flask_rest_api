@@ -45,3 +45,6 @@ Add a new key-value pair
 
 Finding keys by value  
 `curl -i http://localhost:5000/values?prefix=Honda`
+
+Delete by key  
+`curl -i http://localhost:5000/values/abc123 -X DELETE`

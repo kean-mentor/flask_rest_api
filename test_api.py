@@ -84,6 +84,26 @@ class TestApi(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json, {'message': 'ERR: Missing data'})
 
+    def test_delete_existing(self):
+        data = {'key': 'opl631', 'value': 'Opel Astra'}
+        response = self.client.post('/values', json=data)
+        self.assertEqual(response.status_code, 201)
+
+        response = self.client.get('/values/opl631')
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client.delete('/values/opl631')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json, {'message': 'Item successfully deleted'})
+
+        response = self.client.get('/values/opl631')
+        self.assertEqual(response.status_code, 404)
+
+    def test_delete_missing(self):
+        response = self.client.delete('/values/opl631')
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.json, {'message': 'Key not found!'})
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

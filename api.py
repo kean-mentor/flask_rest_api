@@ -19,13 +19,6 @@ def get_all():
 
     return jsonify(storage.get_all()), 200
 
-@simple_api.route('/values/<string:key>', methods=['GET'])
-def get_by_key(key):
-    if key in storage:
-        return jsonify(storage[key]), 200
-
-    return jsonify({'message': 'Key not found!'}), 404
-
 @simple_api.route('/values', methods=['POST'])
 def add():
     if request.json:
@@ -46,3 +39,19 @@ def add():
 
     else:
         return jsonify({'message': 'ERR: Missing data'}), 400
+
+
+@simple_api.route('/values/<string:key>', methods=['GET'])
+def get_by_key(key):
+    if key in storage:
+        return jsonify(storage[key]), 200
+
+    return jsonify({'message': 'Key not found!'}), 404
+
+@simple_api.route('/values/<string:key>', methods=['DELETE'])
+def delete_by_key(key):
+    if key in storage:
+        del storage[key]
+        return jsonify({'message': 'Item successfully deleted'}), 200
+
+    return jsonify({'message': 'Key not found!'}), 404
