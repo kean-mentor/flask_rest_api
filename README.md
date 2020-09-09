@@ -5,7 +5,7 @@ Install/Deploy:
 ---------------
 Get source: `git clone https://github.com/kean-mentor/flask_rest_api.git`  
 _(optional step) Create virtual environment: `virtualenv venv`_  
-_(optional step) Activate venv: `source venv\bin\activate`_  
+_(optional step) Activate venv: `source venv/bin/activate`_  
 Install requirements: `pip install -r requirements.txt`
 
 Starting:
