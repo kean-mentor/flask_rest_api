@@ -22,9 +22,9 @@ def get_all():
 @simple_api.route('/values', methods=['POST'])
 def add():
     if request.json:
-        if 'key' not in request.json:
+        if 'key' not in request.json or not request.json['key']:
             return jsonify({'message': "ERR: 'key' is a required parameter"}), 400
-        if 'value' not in request.json:
+        if 'value' not in request.json or  not request.json['value']:
             return jsonify({'message': "ERR: 'value' is a required parameter"}), 400
 
         key = request.json['key']
